@@ -1,6 +1,5 @@
 class Bullet extends GameObject{
  
-  int timer;
 
   Bullet() {
     timer = 60;
@@ -8,6 +7,7 @@ class Bullet extends GameObject{
     location = new PVector (myShip.location.x, myShip.location.y);
     velocity = new PVector (myShip.direction.x, myShip.direction.y);
     velocity.setMag(10);
+    velocity.add(myShip.velocity);
     size = 10;
   }
 

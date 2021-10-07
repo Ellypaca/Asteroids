@@ -1,10 +1,19 @@
 class Asteroids extends GameObject {
   Asteroids() {
-    lives = 6;
+    lives = 1;
     location = new PVector (random(0, width), random (0, height));
+
     velocity = new PVector (0, 1);
     velocity.rotate(random(0, TWO_PI));
     size = 100;
+  }
+
+  Asteroids(int s, float x, float y) {
+    lives = 1;
+    location = new PVector(x, y);
+    velocity = new PVector (0, 1);
+    velocity.rotate(random(0, TWO_PI));
+    size = s;
   }
 
   void show() {
@@ -21,8 +30,17 @@ class Asteroids extends GameObject {
       GameObject myObj = myObjects.get(i);
       if (myObj instanceof Bullet) {
         if (dist(location.x, location.y, myObj.location.x, myObj.location.y) <= size/2 + myObj.size/2) {
-          myObj.lives = 0;
-          lives = 0;
+          myObj.lives--;
+          lives--;
+          myObjects.add(new Asteroids(size/2, location.x, location.y));
+          myObjects.add(new Asteroids(size/2, location.x, location.y));
+        }
+      }
+
+      if (myObj instanceof Ship) {
+        if (dist(location.x, location.y, myShip.location.x, myShip.location.y) <= size/2 + myShip.size/2) {
+          myObj.lives--;
+          myShip.invincible = true;
         }
       }
       i++;
