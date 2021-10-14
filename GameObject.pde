@@ -1,8 +1,14 @@
 class GameObject {
+  int numberlives;
   int lives;
   PVector location;
   PVector velocity; 
   int size;
+  int timer;
+  int t; //transparency
+  int shotTimer, threshold;
+
+
 
   GameObject() {
   }
@@ -12,6 +18,7 @@ class GameObject {
 
   void act() {
     location.add(velocity);
+
 
     //if (upkey) velocity.add(direction);
     //if (downkey) velocity.sub(direction);

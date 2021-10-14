@@ -1,5 +1,8 @@
-boolean upkey, downkey, leftkey, rightkey, spacekey, skey, shiftkey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, skey, shiftkey, zkey;
 Ship myShip;
+UFO myUFO;
+//Asteroids myAsteroids;
+int numAsteroids, totalAsteroids;
 ArrayList<GameObject> myObjects;
 
 int mode;
@@ -7,21 +10,39 @@ int INTRO = 0;
 int GAME = 1;
 int GAMEOVER = 2;
 
+//images
+PImage Childe, Primo;
+
 void setup() {
   size(800, 600);
   imageMode(CENTER);
   rectMode(CENTER);
 
+  //pictures
+
+  //Game Objects
   myShip = new Ship();
+  //myAsteroids = new Asteroids();
+  myUFO = new UFO();
+
   myObjects = new ArrayList<GameObject>();
   myObjects.add(myShip);
-  myObjects.add(new Asteroids());
-  myObjects.add(new Asteroids());
-  myObjects.add(new Asteroids());
+  int i = 0;
+
+  numAsteroids = 4;
+  while (i < numAsteroids) {
+    myObjects.add(new Asteroids());
+    i++;
+  }
+  totalAsteroids = numAsteroids+numAsteroids*2;
+
+  myObjects.add(new UFO());
+
+  //GAMEMODE
+  mode = GAME;
 }
 
 void draw() {
-  mode = GAME;
   background(0);
   if (mode == INTRO) {
     intro();
@@ -46,34 +67,4 @@ void draw() {
       i++;
     }
   }
-}
-
-void keyPressed() {
-  if (keyCode == UP) upkey = true; 
-  if (keyCode == DOWN) downkey = true;
-  if (keyCode == LEFT) leftkey = true;
-  if (keyCode == RIGHT) rightkey = true;
-  if (keyCode == SHIFT) shiftkey = true;
-
-  if (key == ' ') spacekey = true;
-  if (key == 's') skey = true;
-}
-
-void keyReleased() {
-  if (keyCode == UP) {
-    upkey = false;
-    myShip.velocity.x = myShip.velocity.x *0.9;
-    myShip.velocity.y = myShip.velocity.y *0.9;
-  }
-  if (keyCode == DOWN) {
-    downkey = false;
-    myShip.velocity.x = myShip.velocity.x *0;
-    myShip.velocity.y = myShip.velocity.y *0;
-  }
-  if (keyCode == LEFT) leftkey = false;
-  if (keyCode == RIGHT) rightkey = false;
-  if (keyCode == SHIFT) shiftkey = false;
-
-  if (key == ' ') spacekey = false;
-  if (key == 's') skey = false;
 }
