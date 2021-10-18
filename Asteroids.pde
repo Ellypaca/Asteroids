@@ -24,16 +24,15 @@ class Asteroids extends GameObject {
     fill(255);
     stroke(255);
     ellipse(location.x, location.y, size, size);
+
+    //childe
+    image(Childe, location.x, location.y, size, size);
   }
 
   void act() {
     super.act();
-    
-    //childe
-    image(Childe, location.x, location.y, size, size);
+    timer++;
 
-
- 
 
 
 
@@ -42,10 +41,15 @@ class Asteroids extends GameObject {
       GameObject myObj = myObjects.get(i);
       if (myObj instanceof Bullet) {
         if (dist(location.x, location.y, myObj.location.x, myObj.location.y) <= size/2 + myObj.size/2 ) {
+
+          
           myObj.lives--;
           lives--;
           numberlives--;
           totalAsteroids--;
+
+          
+
 
           //  (numberlives > 0 ) {
           //  myObjects.add(new Asteroids(size/2, location.x, location.y));

@@ -1,9 +1,10 @@
 boolean upkey, downkey, leftkey, rightkey, spacekey, skey, shiftkey, zkey, qkey, akey;
 int UFOtimer;
 boolean victory;
+
 Ship myShip;
 UFO myUFO;
-//Asteroids myAsteroids;
+Asteroids myAsteroids;
 int numAsteroids, totalAsteroids;
 ArrayList<GameObject> myObjects;
 
@@ -13,14 +14,19 @@ int GAME = 1;
 int PAUSE = 2;
 int GAMEOVER = 3;
 
-//images
+//VISUALS===================
 PImage Childe, Primogems;
 PImage [] introGif;
 int gifFrames; 
 int f;
+int h, s, b;
+int timer;
 
 //fonts
-PFont NoSurrender;
+PFont NoSurrender, Dash;
+
+//achivements
+int achitimer, achiseconds;
 
 
 void setup() {
@@ -43,8 +49,11 @@ void setup() {
     n++;
   }
 
+
   //font
   NoSurrender = createFont("No Surrender.ttf", 100);
+  Dash = createFont("Dash-Horizon-Demo.otf", 70);
+
 
 
   //Game Objects
@@ -56,14 +65,23 @@ void setup() {
   myObjects.add(myShip);
   int i = 0;
 
+
+
   numAsteroids = 4;
   while (i < numAsteroids) {
     myObjects.add(new Asteroids());
     i++;
   }
-  totalAsteroids = numAsteroids+numAsteroids*2;
 
-  myObjects.add(new UFO());
+
+  totalAsteroids = numAsteroids*3;
+  myObjects.add(myUFO);
+
+  //achievements
+
+
+
+
 
   //GAMEMODE
   mode = INTRO;
@@ -73,6 +91,8 @@ void draw() {
   background(0);
   if (mode == INTRO) {
     intro();
+  } else if (mode == PAUSE) {
+    pause();
   } else if (mode == GAME) {
     game();
   } else if (mode == GAMEOVER) {

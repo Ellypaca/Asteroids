@@ -1,7 +1,11 @@
 class Ship extends GameObject {
   //1. Instance Variables
   PVector direction;
-  color colour;
+  color[] colour;
+  color gold = #EAC739;
+  color black = #000000;
+  int rColor;
+
   boolean invincible;
   int safeTimer;
 
@@ -13,9 +17,14 @@ class Ship extends GameObject {
     velocity = new PVector(0, 0);
     direction = new PVector(0, -0.1);
     shotTimer = 0;
-    threshold = 0;
-    safeTimer = 200;
-    colour =  0;
+    threshold = 40;
+    safeTimer = 400;
+
+    colour = new color [2];
+    colour[0] = gold;
+    colour[1] = black;
+    
+    rColor = 1;
   }
 
   //3. Behaviour Functions
@@ -24,7 +33,7 @@ class Ship extends GameObject {
     translate(location.x, location.y);
     rotate(direction.heading());
     stroke(255);
-    fill(colour);
+    fill(colour[rColor]);
     triangle(-25, -12.5, -25, 12.5, 25, 0);
 
 
@@ -41,10 +50,10 @@ class Ship extends GameObject {
 
     //BUFFS========================
     if (invincible) {
-      colour = #EAC739;
+      rColor = 0;
       if (timer == 0) {
         timer = 60;
-        colour = 0;
+        rColor = 1;
         invincible = false;
       }
       // println(timer);
@@ -94,7 +103,7 @@ class Ship extends GameObject {
     if (spacekey && shotTimer >= threshold) {
       myObjects.add(new Bullet());
       shotTimer = 0;
-      
+
       //add i-frame to increase skill cap
       invincible = true;
       timer = 5;
@@ -102,7 +111,7 @@ class Ship extends GameObject {
 
     //safe point
     safeTimer++;
-    if (zkey == true && myShip.safeTimer >= 30) {
+    if (zkey == true && myShip.safeTimer >= 400) {
       myShip.location.x = random(0+myShip.size, width-myShip.size);
       myShip.location.y = random(0+myShip.size, height-myShip.size);
 

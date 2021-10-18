@@ -23,7 +23,7 @@ class UFO extends GameObject {
   }
 
   void show() {
-    fill(255);
+    fill(#CBCBCB);
     ellipse(location.x, location.y, size, size - 40);
   }
 
@@ -33,7 +33,7 @@ class UFO extends GameObject {
 
     //shooting 
     shotTimer++;
-    if (shotTimer >= threshold || shiftkey == true) {
+    if (shotTimer >= threshold) {
       myObjects.add(new Bullet(location.x, location.y, myShip.location.x-location.x, myShip.location.y-location.y));
       shotTimer = 0;
     }
@@ -67,8 +67,5 @@ class UFO extends GameObject {
       }
       i++;
     }
-    
-    
-    
   }
 }
