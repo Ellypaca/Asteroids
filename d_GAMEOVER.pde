@@ -1,3 +1,5 @@
 void gameover() {
-  background(255);
+  background(80, 80, 80);
+  
+ 
 }

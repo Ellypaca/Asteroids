@@ -1,7 +1,6 @@
 class UFO extends GameObject {
   int x;
 
-
   UFO() {
     lives = 3;
     size = 100;
@@ -56,16 +55,20 @@ class UFO extends GameObject {
           // myObjects.add(new Particle());
         }
 
-        if (myObj instanceof Ship) {
-          if (dist(location.x, location.y, myShip.location.x, myShip.location.y) <= size/2 + myShip.size/2) {
-            if (myShip.invincible == false) {
-              myShip.lives--;
-              myShip.invincible = true;
-            }
-          }
-        }
+        //if (myObj instanceof Ship) {
+        //  if (dist(location.x, location.y, myShip.location.x, myShip.location.y) <= size/2 + myShip.size/2) {
+        //    if (myShip.invincible == false) {
+        //      myShip.lives--;
+        //      myShip.invincible = true;
+        //      println("a");
+        //    }
+        //  }
+        //}
       }
       i++;
     }
+    
+    
+    
   }
 }

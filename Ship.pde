@@ -88,15 +88,16 @@ class Ship extends GameObject {
     if (leftkey) direction.rotate( radians (5));
     if (rightkey) direction.rotate(-radians (5));
 
-    //shooting
+    //shooting=================================================
     //counts down shot timer to limit rate of fire
     shotTimer++;
-    if (spacekey) {
-      invincible = true;
-    }
     if (spacekey && shotTimer >= threshold) {
       myObjects.add(new Bullet());
       shotTimer = 0;
+      
+      //add i-frame to increase skill cap
+      invincible = true;
+      timer = 5;
     }
 
     //safe point
@@ -127,15 +128,6 @@ class Ship extends GameObject {
       myShip.location.x = tempx;
       myShip.location.y = tempy;
       safeTimer = 0;
-      
     }
-
-
-
-
-    //cheating
-    if (skey) velocity.setMag(0);
-    if (shiftkey) myShip.threshold = 3;    
-    if (shiftkey == false) myShip.threshold = 40 ;
   }
 }

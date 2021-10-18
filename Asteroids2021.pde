@@ -1,4 +1,6 @@
-boolean upkey, downkey, leftkey, rightkey, spacekey, skey, shiftkey, zkey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, skey, shiftkey, zkey, qkey, akey;
+int UFOtimer;
+boolean victory;
 Ship myShip;
 UFO myUFO;
 //Asteroids myAsteroids;
@@ -8,17 +10,42 @@ ArrayList<GameObject> myObjects;
 int mode;
 int INTRO = 0;
 int GAME = 1;
-int GAMEOVER = 2;
+int PAUSE = 2;
+int GAMEOVER = 3;
 
 //images
-PImage Childe, Primo;
+PImage Childe, Primogems;
+PImage [] introGif;
+int gifFrames; 
+int f;
+
+//fonts
+PFont NoSurrender;
+
 
 void setup() {
   size(800, 600);
   imageMode(CENTER);
   rectMode(CENTER);
+  textAlign(CENTER);
 
   //pictures
+  Childe = loadImage("Tartar.png");
+  Primogems = loadImage("Primo.png");
+
+
+  //gif
+  int n = 0;
+  gifFrames = 117;
+  introGif = new PImage [gifFrames];
+  while (n < gifFrames) {
+    introGif[n] = loadImage("frame_"+n+"_delay-0.07s.gif"); 
+    n++;
+  }
+
+  //font
+  NoSurrender = createFont("No Surrender.ttf", 100);
+
 
   //Game Objects
   myShip = new Ship();
@@ -39,7 +66,7 @@ void setup() {
   myObjects.add(new UFO());
 
   //GAMEMODE
-  mode = GAME;
+  mode = INTRO;
 }
 
 void draw() {
@@ -52,19 +79,5 @@ void draw() {
     gameover();
   } else {
     println("Error: Mode =" + mode);
-  }
-
-
-  int i = 0;
-  while (i<myObjects.size()) {
-    GameObject myObj = myObjects.get(i);
-    myObj.show();
-    myObj.act();
-
-    if (myObj.lives == 0) {
-      myObjects.remove(i);
-    } else {
-      i++;
-    }
   }
 }

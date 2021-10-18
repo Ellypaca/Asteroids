@@ -1,4 +1,4 @@
-class Fire extends GameObject {
+class Fire extends GameObject { 
   PVector nudge;
   Fire() {
     lives = 1;

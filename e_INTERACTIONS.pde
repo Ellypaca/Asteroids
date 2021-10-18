@@ -1,3 +1,11 @@
+void mousePressed() {
+  if (mode == INTRO) {
+    mode = GAME;
+  } else if (mode == GAMEOVER) {
+    mode = INTRO;
+  }
+}
+
 
 void keyPressed() {
   if (keyCode == UP) upkey = true; 
@@ -5,9 +13,12 @@ void keyPressed() {
   if (keyCode == LEFT) leftkey = true;
   if (keyCode == RIGHT) rightkey = true;
   if (keyCode == SHIFT) shiftkey = true;
+  if (key == 'a') akey = true;
   if (key == 'z') zkey = true;
   if (key == ' ') spacekey = true;
   if (key == 's') skey = true;
+  if (key == 'q') qkey = true;
+  if (key == 'a') akey = true;
 }
 
 void keyReleased() {
@@ -27,4 +38,6 @@ void keyReleased() {
   if (key == 'z') zkey = false;
   if (key == ' ') spacekey = false;
   if (key == 's') skey = false;
+  if (key == 'q') qkey = false;
+  if (key == 'a') akey = false;
 }

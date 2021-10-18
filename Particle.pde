@@ -4,11 +4,13 @@ class Particle extends GameObject {
 
   Particle(float x, float y, float vx, float vy) {
     lives = 60;
-    size = 5;
+    size = 8;
     t = int(random(200, 255));
     int i = 0;
     location = new PVector (x, y);
     velocity = new PVector (vx, vy);
+    velocity.rotate(PI+ random(-4, 4));
+
 
 
 
@@ -20,7 +22,7 @@ class Particle extends GameObject {
 
   void show() {
     noStroke();
-    fill(255, 0, 0, t);
+    fill(0, 0, 255, t);
     circle(location.x, location.y, size);
   }
 
