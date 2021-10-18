@@ -19,5 +19,5 @@ void gameover() {
   }
 
   textFont(Dash);
-  text("Cick anywhere to continue", width/2, 500);
+  text("Click anywhere to continue", width/2, 500);
 }
