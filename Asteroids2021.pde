@@ -1,3 +1,7 @@
+//Asteroids Project
+//Katelynn Bai
+//Oct. 17, 2021
+
 boolean upkey, downkey, leftkey, rightkey, spacekey, skey, shiftkey, zkey, qkey, akey;
 int UFOtimer;
 boolean victory;
